@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>The Walking Dead - CSS Dinâmico</title>
+    <style>
+        /* Fonte padrão do sistema estilo máquina de escrever */
+        body {
+            background-color: #1a1a1a;
+            /* Fundo escuro */
+            color: #f0f0f0;
+            /* Cor do texto branco */
+            font-family: Courier, monospace;
+            /* Fonte padrão do sistema */
+            text-align: center;
+            /* Centraliza o texto da página */
+            padding: 50px;
+            /* Espaçamento interno */
+            margin: 0;
+            /* Remove margem */
+        }
+
+        h1 {
+            color: #B22222;
+            /* Vermelho para o título */
+            text-shadow: 1px 1px 2px black;
+            /* Sombra */
+            margin-bottom: 40px;
+            /* Espaço abaixo do título */
+        }
+
+        /* Estilo do botão com cores */
+        #botaoTWD {
+            background-color: #2c2c2c;
+            /* Fundo cinza escuro */
+            color: #B22222;
+            /* Texto vermelho */
+            border: 3px solid #8B0000;
+            /* Borda vermelha escura */
+            border-radius: 10px;
+            /* Bordas arredondadas */
+            padding: 15px 40px;
+            /* Espaçamento interno */
+            font-size: 18px;
+            /* tamanho da fonte */
+            cursor: pointer;
+            /* cursor de maozinha */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Transição */
+            box-shadow: 0 0 10px #8B0000;
+            /* sombra vermelha escura */
+            user-select: none;
+            /* Impede seleção do texto */
+        }
+
+        /* Estilo do botao quando ativo */
+        .ativo {
+            background-color: #8B0000;
+            /* Fundo vermelho forte */
+            color: #f0f0f0;
+            /* Texto */
+            box-shadow: 0 0 20px #B22222;
+            /* Sombra vermelha viva */
+        }
+
+        /* Estilo da imagem walker */
+        #imagemTWD {
+            width: 320px;
+            /* Largura fixa */
+            height: auto;
+            /* Altura proporcional */
+            margin-top: 30px;
+            /* Espaço acima */
+            border: 5px solid #8B0000;
+            /* borda vermelha */
+            border-radius: 15px;
+            /* Borda arredondadas */
+            box-shadow: 0 0 20px #8B0000;
+            /* Sombra */
+            transition: transform 0.5s ease;
+            /* Transição para o zoom */
+        }
+
+        /* Efeito zoom e sombra forte na imagem */
+        .zoom {
+            transform: scale(1.1);
+            /* Aumenta 10% */
+            box-shadow: 0 0 40px #B22222;
+            /* Sombra vermelha intensa */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Título da página -->
+    <h1>The Walking Dead - Alerta Walker</h1>
+
+    <!-- Botão para ativar alerta -->
+    <button id="botaoTWD">⚠️ ALERTA: CLIQUE AQUI!</button>
+
+    <br />
+
+    <!-- Imagem do walker que muda ao passar o mouse -->
+    <img id="imagemTWD" src="https://preview.redd.it/jlwvp4luhnhe1.jpeg?auto=webp&s=e0c3df9362391a7faba387299db3917a46127d4c" alt="Walker 1" title="Walker detectado!" />
+
+    <script>
+        // Seleciona elementos para manipulação
+        const botao = document.getElementById("botaoTWD");
+        const imagem = document.getElementById("imagemTWD");
+
+        let ativo = false; // Controla estado do botão
+
+        // URLs das imagens
+        const walker1 = "https://preview.redd.it/the-walking-dead-tribute-poster-by-me-v0-azsq8rshj7sd1.jpeg?auto=webp&s=2dcef813133f706391c1afe7209158875b69db69"; // Imagem original
+        const walker2 = "https://m.media-amazon.com/images/M/MV5BYWQwMGRhNGEtZTNhMy00MzVjLWJhMjItYjcwMDljMTkyNTg2XkEyXkFqcGc@._V1_.jpg"; // Imagem assustadora
+
+        // Evento de clique no botão para alternar estilos e texto
+        botao.addEventListener("click", () => {
+            if (!ativo) {
+                botao.classList.add("ativo"); // Ativa estilo vermelho forte
+                botao.textContent = "⚠️ ALERTA ATIVADO!";
+                ativo = true;
+            } else {
+                botao.classList.remove("ativo"); // Volta ao estilo padrão
+                botao.textContent = "⚠️ ALERTA: CLIQUE AQUI!";
+                ativo = false;
+            }
+        });
+
+        // Evento mouseover para mudar imagem e aplicar zoom
+        imagem.addEventListener("mouseover", () => {
+            imagem.src = walker2; // Troca para imagem assustadora
+            imagem.classList.add("zoom"); // Aplica zoom
+        });
+
+        // Evento mouseout para restaurar imagem original e remover zoom
+        imagem.addEventListener("mouseout", () => {
+            imagem.src = walker1; // Imagem original
+            imagem.classList.remove("zoom"); // Remove zoom
+        });
+    </script>
+</body>
+
+</html>
